@@ -1,5 +1,9 @@
+import { GCP } from './../models/gcp';
 import { Component, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
+import { GCPsActions } from '../actions';
+import * as fromGCPs from '../reducers/gcp.reducer'
 
 @Component({
   selector: 'app-file-chooser',
@@ -9,7 +13,10 @@ import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 export class FileChooserComponent {
   csvRecords: any;
 
-  constructor(private ngxCsvParser: NgxCsvParser) {
+  constructor(
+    private ngxCsvParser: NgxCsvParser,
+    private store: Store<fromGCPs.State>
+  ) {
   }
 
   @ViewChild('fileImportInput') fileImportInput: any;
@@ -22,6 +29,7 @@ export class FileChooserComponent {
         next: (result): void => {
           console.log('Result', result);
           this.csvRecords = result;
+          this.store.dispatch(GCPsActions.loadGCPsListSuccess({ GCPs: result as GCP[] }));
         },
         error: (error: NgxCSVParserError): void => {
           console.log('Error', error);
