@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { GcpTableComponent } from './gcp-table.component';
 
@@ -8,9 +9,12 @@ describe('GcpTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GcpTableComponent ]
+      declarations: [GcpTableComponent],
+      providers: [
+        provideMockStore()
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
