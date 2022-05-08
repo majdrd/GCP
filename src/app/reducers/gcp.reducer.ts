@@ -19,6 +19,11 @@ const GCPsReducer = createReducer(
             ...state,
             GCPs
         };
+    }),
+    on(GCPsActions.deleteGCP, (state, { GCP }) => {
+        let updatedState = { ...state };
+        updatedState.GCPs = state.GCPs.filter(point => point.name !== GCP.name);
+        return updatedState;
     })
 );
 

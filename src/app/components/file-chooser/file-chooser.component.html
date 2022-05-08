@@ -1,0 +1,5 @@
+<div class="file-chooser-container">
+  <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="fileChangeListener($event)"
+    accept=".csv" />
+  <button mat-raised-button (click)="csvInput.click()">{{ FILE_CHOOSER_LABEL }}</button>
+</div>

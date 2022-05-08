@@ -1,0 +1,1 @@
+export const FILE_CHOOSER_LABEL = 'Choose Spreadsheet File (CSV)';

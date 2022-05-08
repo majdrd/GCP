@@ -1,9 +1,10 @@
-import { GCP } from './../models/gcp';
-import { Component, ViewChild } from '@angular/core';
+import { GCP } from '../../models/gcp';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
-import { GCPsActions } from '../actions';
-import * as fromGCPs from '../reducers/gcp.reducer'
+import { GCPsActions } from '../../actions';
+import * as fromGCPs from '../../reducers/gcp.reducer'
+import { FILE_CHOOSER_LABEL } from 'src/app/constants/file-chooser.constants';
 
 @Component({
   selector: 'app-file-chooser',
@@ -11,6 +12,7 @@ import * as fromGCPs from '../reducers/gcp.reducer'
   styleUrls: ['./file-chooser.component.scss']
 })
 export class FileChooserComponent {
+  readonly FILE_CHOOSER_LABEL = FILE_CHOOSER_LABEL;
   csvRecords: any;
 
   constructor(
@@ -18,8 +20,6 @@ export class FileChooserComponent {
     private store: Store<fromGCPs.State>
   ) {
   }
-
-  @ViewChild('fileImportInput') fileImportInput: any;
 
   fileChangeListener($event: any): void {
 
